@@ -14,7 +14,7 @@ var app = express();
 app.set('port', (process.argv[2] || 3000));
 app.set('view engine', 'jsx');
 app.set('views', __dirname + '/views');
-app.engine('jsx', require('express-react-views').createEngine({transformViews: false}));
+app.engine('jsx', require('express-react-views').createEngine());
 
 require('babel/register')({
     ignore: false
@@ -35,7 +35,7 @@ app.use('/bundle.js', function (req, res) {
             presets: ["react", "es2015"],
             compact: false
         }))
-        .require("./app.js", {entry: true})
+        .require("app.js", {entry: true})
         .bundle()
         .pipe(res);
 });
