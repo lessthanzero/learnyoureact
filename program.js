@@ -6,7 +6,7 @@ var div = DOM.div;
 var script = DOM.script;
 
 var browserify = require('browserify');
-var babelify = require("babelify");
+var babelify = require('babelify');
 
 var express = require('express');
 var app = express();
@@ -32,10 +32,10 @@ app.use('/bundle.js', function (req, res) {
 
     browserify({debug: true})
         .transform(babelify.configure({
-            presets: ["react", "es2015"],
+            presets: ['react', 'es2015'],
             compact: false
         }))
-        .require("app.js", {entry: true})
+        .require('app.js', {entry: true})
         .bundle()
         .pipe(res);
 });
